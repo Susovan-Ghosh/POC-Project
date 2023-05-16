@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+
+    <appender name="json"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>C:\Users\susov\Desktop\EXL\demoLogger\logs\log.json</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>log.%d{yyyy-MM-dd}.json</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="com.exlservice.demoLogger.Layout.CustomJsonLayout">
+            <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                <prettyPrint>true</prettyPrint>
+            </jsonFormatter>
+            <appendLineSeparator>true</appendLineSeparator>
+        </layout>
+    </appender>
+
+    <logger name="com.exlservice.demoLogger"
+            level="INFO">
+        <appender-ref ref="json"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="json"/>
+    </root>
+
+</configuration>
