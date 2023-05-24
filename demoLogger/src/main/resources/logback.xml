@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration debug="true">
+    <logger name="org.apache.catalina.core" level="OFF"/>
 
     <appender name="json"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
