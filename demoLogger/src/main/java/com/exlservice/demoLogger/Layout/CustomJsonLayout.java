@@ -34,40 +34,40 @@ public class CustomJsonLayout extends JsonLayout {
 
     //    //&& execution(* com.exlservice.demoLogger.Layout.CustomJsonLayout.addCustomDataToJsonMap(..))
 ////    execution(* com.exlservice.demoLogger.Controller.*.*(..))
-    @Pointcut(value = "execution(* com.exlservice.demoLogger.Layout.CustomJsonLayout.addCustomDataToJsonMap(..))")
-    public void myPointcut() {
-    }
-
-    @Around("myPointcut()")
-    public Object logMethodCall(ProceedingJoinPoint pjr) throws Throwable {
-        System.out.println("Line 37");
-//        Signature signature = pjr.getSignature();
-//        Logger logger = LoggerFactory.getLogger(signature.getDeclaringType());
+//    @Pointcut(value = "execution(* com.exlservice.demoLogger.Layout.CustomJsonLayout.addCustomDataToJsonMap(..))")
+//    public void myPointcut() {
+//    }
 //
-//        // These are the information that can be extracted from both ILoggingEvent and ProceedingJoinPoint objects (Although Logger message isn't
-//        // available in ProceedingJoinPoint object which forces us to override the method written down below).
-//        String loggerName = pjr.getTarget().getClass().getName();
-//        methodName = pjr.getSignature().getNaame(); // This can't be retrieved from ILoggingEvent (main point of concern).
-//        String loggerLevel = "";
-//        if (logger.isTraceEnabled()) {
-//            loggerLevel = "TRACE";
-//        } else if (logger.isDebugEnabled()) {
-//            loggerLevel = "DEBUG";
-//        } else if (logger.isInfoEnabled()) {
-//            loggerLevel = "INFO";
-//        } else if (logger.isWarnEnabled()) {
-//            loggerLevel = "WARN";
-//        } else if (logger.isErrorEnabled()) {
-//            loggerLevel = "ERROR";
-//        }
-        methodName = pjr.getSignature().getName();
-//        MDC.put("methodName", "getMethodName");
-//        map.put("methodName", methodName);
-//        System.out.println(logger.getClass().getEnclosingMethod().getName());
-        Object result = pjr.proceed();
-//        MDC.remove("methodName");
-        return result;
-    }
+//    @Around("myPointcut()")
+//    public Object logMethodCall(ProceedingJoinPoint pjr) throws Throwable {
+//        System.out.println("Line 37");
+////        Signature signature = pjr.getSignature();
+////        Logger logger = LoggerFactory.getLogger(signature.getDeclaringType());
+////
+////        // These are the information that can be extracted from both ILoggingEvent and ProceedingJoinPoint objects (Although Logger message isn't
+////        // available in ProceedingJoinPoint object which forces us to override the method written down below).
+////        String loggerName = pjr.getTarget().getClass().getName();
+////        methodName = pjr.getSignature().getNaame(); // This can't be retrieved from ILoggingEvent (main point of concern).
+////        String loggerLevel = "";
+////        if (logger.isTraceEnabled()) {
+////            loggerLevel = "TRACE";
+////        } else if (logger.isDebugEnabled()) {
+////            loggerLevel = "DEBUG";
+////        } else if (logger.isInfoEnabled()) {
+////            loggerLevel = "INFO";
+////        } else if (logger.isWarnEnabled()) {
+////            loggerLevel = "WARN";
+////        } else if (logger.isErrorEnabled()) {
+////            loggerLevel = "ERROR";
+////        }
+//        methodName = pjr.getSignature().getName();
+////        MDC.put("methodName", "getMethodName");
+////        map.put("methodName", methodName);
+////        System.out.println(logger.getClass().getEnclosingMethod().getName());
+//        Object result = pjr.proceed();
+////        MDC.remove("methodName");
+//        return result;
+//    }
 
     @Override
     protected void addCustomDataToJsonMap(Map<String, Object> map, ILoggingEvent event) {
@@ -79,7 +79,7 @@ public class CustomJsonLayout extends JsonLayout {
 //        System.out.println("Second one :" + str[1]);
 //        System.out.println(event.getMessage().split("|"));
 //        System.out.println("EVENT : " + event.getMDCPropertyMap());
-        System.out.println("Line 82");
+//        System.out.println("Line 82");
         SimpleDateFormat format = new SimpleDateFormat(
                 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
         format.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -102,7 +102,7 @@ public class CustomJsonLayout extends JsonLayout {
         map.put("feature", feature);
         map.put("methodName", methodName);
 //        map.put("methodName", event.getMessage().split("|")[0]); // This gives the internal methods but not the actual api method (main point of concern).
-        map.put("componentType", event.getMessage().split("|")[1]);
+        map.put("componentType", event.getMessage().split(";")[1]);
         map.put("url", "");
         map.put("httpMethod", HEADERS);
         map.put("payload", "");

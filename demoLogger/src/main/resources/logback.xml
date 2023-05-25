@@ -19,10 +19,14 @@
         </layout>
     </appender>
 
-    <logger name="com.exlservice.demoLogger"
-            level="INFO">
-        <appender-ref ref="json"/>
-    </logger>
+    <!--    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+    <!--        <appender-ref ref="json"/>-->
+    <!--    </appender>-->
+
+    <!--    <logger name="com.exlservice.demoLogger"-->
+    <!--            level="INFO">-->
+    <!--        <appender-ref ref="json"/>-->
+    <!--    </logger>-->
 
     <root level="INFO">
         <appender-ref ref="json"/>
